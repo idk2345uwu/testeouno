@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from testeounoapp.views import(inicio,agregarProyecto,listadoProyectos,eliminarProyecto,actualizarProyecto)
+from testeounoapp.views import(inicio,agregarProyecto,listadoProyectos,eliminarProyecto,actualizarProyecto,eliminarProyecto)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +24,5 @@ urlpatterns = [
     path('agregarProyecto/', agregarProyecto),
     path('eliminarProyecto/<int:id>', eliminarProyecto),
     path('actualizarProyecto/<int:id>', actualizarProyecto),
+    path('eliminarProyecto/<int:id>/', eliminarProyecto),
 ]

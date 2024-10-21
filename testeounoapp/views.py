@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from testeounoapp.forms import FormProyecto
 from testeounoapp.models import Proyecto
+from django.shortcuts import get_object_or_404, redirect
 
 # Create your views here.
 def inicio(request):
@@ -34,3 +35,7 @@ def actualizarProyecto(request, id):
         return inicio(request)
     data = {'form' : form}
     return render(request, 'testeounopp/agregarProyecto.html', data)
+def eliminarProyecto(request, id):
+    proyecto = get_object_or_404(Proyecto, id=id)
+    proyecto.delete()
+    return redirect('/proyectos')

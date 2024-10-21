@@ -1,7 +1,7 @@
 <head></head>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="container mt-4">
+<body class="container-fluid sm-12">
     <div class="alert alert-info display-1 text-center">LISTADO PROYECTOS</div>
 
     {% if proyectos %}
@@ -25,9 +25,8 @@
                 <td>{{ proyecto.fechaTermino }}</td>
                 <td>{{ proyecto.responsable }}</td>
                 <td>{{ proyecto.prioridad }}</td>
-                <td><a href="/actualizarProyecto/{{ proyecto.id }}" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></td>
-                <td><a href="/eliminarProyecto/{{ proyecto.id }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></td>
-                <td></td>
+                <td><a href="/actualizarProyecto/{{ proyecto.id }}" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a></td>
+                <td><a href="/eliminarProyecto/{{ proyecto.id }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a></td>
             </tr>
             {% endfor %}
         </tbody>
