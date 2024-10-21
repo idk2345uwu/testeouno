@@ -1,0 +1,16 @@
+<head></head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="container mt-4">
+    <div class="alert alert-info display-1 text-center">LISTA DE PROYECTOS</div>
+
+    <form method = 'POST'>
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="AGREGAR PROYECTO" class="btn btn-info">
+    </form>
+
+
+    <a href="../testeouno" class="btn btn-info mt-5">Proyectos</a>
+</body>

@@ -1,0 +1,48 @@
+<head></head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-4">
+    <div class="alert alert-info display-1 text-center">LISTADO PROYECTOS</div>
+
+    {% if testeouno %}
+
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Nombre</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha de Termino</th>
+                <th>Responsable: </th>
+                <th>Prioridad: </th>
+                <th>-</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proyecto in testeouno %}
+            <tr>
+                <td>{{ proyecto.nombre }}</td>
+                <td>{{ proyecto.fechaInicio }}</td>
+                <td>{{ proyecto.fechaTermino }}</td>
+                <td>{{ proyecto.responsable }}</td>
+                <td>{{ proyecto.prioridad }}</td>
+                <td><a href="/actualizarProyecto/{{ proyecto.id }}" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></td>
+                <td><a href="/eliminarProyecto/{{ proyecto.id }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+
+    <div class="alert alert-primary" role="alert">
+        <strong>No Hay/No se Hayan proyectos en el sistema</strong>
+    </div>
+
+
+    {% endif %}
+
+
+    <a href="../" class="btn btn-danger">VOLVER</a>
+    <a href="../agregarProyecto" class="btn btn-info float-end">AGREGAR PROYECTOS</a>
+</body>
