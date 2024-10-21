@@ -7,3 +7,7 @@ class Proyecto(models.Model):
     nombre = models.CharField(max_length=50)
     responsable = models.CharField(max_length=50)
     prioridad = models.IntegerField()
+
+
+class Meta:
+        db_table = 'testeounoapp_proyecto' 
