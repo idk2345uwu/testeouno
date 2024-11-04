@@ -61,3 +61,19 @@ def agregarCancion(request):
         return inicio(request)
     data = {'form' : form}
     return render(request, 'testeounoapp/agregarCancion.html', data)
+
+
+def actualizarCancion(request, id):
+    cancion = Cancion.objects.get(id = id)
+    form = FormCancion(instance=cancion)
+    if request.method == 'POST' :
+        form = FormCancion(request.POST, instance=cancion)
+        if form.is_valid() :
+            form.save()
+        return inicio(request)
+    data = {'form' : form}
+    return render(request, 'testeounopp/agregarCancion.html', data)
+def eliminarCancion(request, id):
+    cancion = get_object_or_404(Cancion, id=id)
+    cancion.delete()
+    return redirect('/canciones')
