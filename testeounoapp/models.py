@@ -9,6 +9,38 @@ class Proyecto(models.Model):
     cancion = models.CharField(max_length=100)
     localidad = models.CharField(max_length=50)
 
+    
 
-class Meta:
+    class Meta:
         db_table = 'testeounoapp_proyecto' 
+
+
+class Cancion(models.Model):
+    nombre = models.CharField(max_length=100)
+    grupooriginal = models.CharField(max_length=100)
+    fechaoriginal = models.DateField()
+    extras = models.BooleanField()
+    tematica = models.CharField(max_length=200)
+    fechasalida = models.DateField()
+    duracion = models.CharField(max_length=200)
+    introbreak = models.BooleanField()
+
+    def __str__(self):
+        return self.nombre
+
+
+class Grupo(models.Model):
+    nombre = models.CharField(max_length=100)
+    integrantes = models.CharField(max_length=200)
+    fecha = models.DateField(auto_now_add=True)
+    cancion = models.CharField(max_length=200)
+    gruponuevo = models.BooleanField()
+
+    def __str__(self):
+        return self.nombre
+
+
+        
+
+
+

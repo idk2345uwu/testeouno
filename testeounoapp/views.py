@@ -1,8 +1,13 @@
 from django.shortcuts import render
 
 from django.shortcuts import redirect
+
 from testeounoapp.forms import FormProyecto
 from testeounoapp.models import Proyecto
+
+from testeounoapp.forms import FormCancion
+from testeounoapp.models import Cancion
+
 from django.shortcuts import get_object_or_404, redirect
 
 # Create your views here.
@@ -39,3 +44,20 @@ def eliminarProyecto(request, id):
     proyecto = get_object_or_404(Proyecto, id=id)
     proyecto.delete()
     return redirect('/proyectos')
+
+
+
+
+def listadoCancion(request):
+    canciones = Cancion.objects.all()
+    data = {'canciones' : canciones}
+    return render(request, 'testeounoapp/canciones.html', data)
+def agregarCancion(request):
+    form = FormCancion()
+    if request.method == 'POST':
+        form = FormCancion(request.POST)
+        if form.is_valid():
+            form.save()
+        return inicio(request)
+    data = {'form' : form}
+    return render(request, 'testeounoapp/agregarCancion.html', data)

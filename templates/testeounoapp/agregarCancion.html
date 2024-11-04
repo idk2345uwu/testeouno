@@ -3,14 +3,14 @@
 </head>
 
 <body class="container-fluid lt 6">
-    <div class="alert alert-info display-1 text-center">Agregar Integrantes</div>
+    <div class="alert alert-info display-1 text-center">Agregar Canciones</div>
 
     <form method = 'POST'>
         {{ form.as_p }}
         {% csrf_token %}
-        <input type="submit" value="AGREGAR Integrante" class="btn btn-info">
+        <input type="submit" value="AGREGAR Cancion" class="btn btn-info">
     </form>
 
 
-    <a href="../proyectos" class="btn btn-info mt-5">Volver a la Lista</a>
+    <a href="../canciones" class="btn btn-info mt-5">Volver a la Lista</a>
 </body>

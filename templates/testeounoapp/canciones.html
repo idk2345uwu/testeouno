@@ -1,0 +1,52 @@
+<head></head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container-fluid sm-12">
+    <div class="alert alert-info display-1 text-center">Registro de Canciones</div>
+
+    {% if canciones %}
+
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Nombre</th>
+                <th>Grupo original</th>
+                <th>Fecha de Creacion del Grupo Originall</th>
+                <th>Extras</th>
+                <th>Tematica</th>
+                <th>Fecha de Salida de la Cancion</th>
+                <th>Duracion</th>
+                <th>Intro o Break</th>
+                <th>-</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cancion in canciones %}
+            <tr>
+                <td>{{ cancion.nombre }}</td>
+                <td>{{ cancion.grupooriginal }}</td>
+                <td>{{ cancion.fechaoriginal }}</td>
+                <td>{{ cancion.extras }}</td>
+                <td>{{ cancion.tematica }}</td>
+                <td>{{ cancion.fechasalida }}</td>
+                <td>{{ cancion.duracion }}</td>
+                <td>{{ cancion.introbreak }}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+
+    <div class="alert alert-primary" role="alert">
+        <strong>No Hay/No se Hayan Canciones en el sistema</strong>
+    </div>
+
+
+    {% endif %}
+
+
+    <a href="../" class="btn btn-danger">VOLVER</a>
+    <a href="../agregarCancion" class="btn btn-info float-end">Agregar Nueva Cancion</a>
+</body>
