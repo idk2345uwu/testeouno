@@ -104,3 +104,19 @@ def agregarGrupo(request):
         return inicio(request)
     data = {'form' : form}
     return render(request, 'testeounoapp/agregarGrupo.html', data)
+
+
+def actualizarGrupo(request, id):
+    grupo = Grupo.objects.get(id = id)
+    form = FormGrupo(instance=grupo)
+    if request.method == 'POST' :
+        form = FormGrupo(request.POST, instance=grupo)
+        if form.is_valid() :
+            form.save()
+        return inicio(request)
+    data = {'form' : form}
+    return render(request, 'testeounopp/agregarGrupo.html', data)
+def eliminarGrupo(request, id):
+    grupo = get_object_or_404(Grupo, id=id)
+    grupo.delete()
+    return redirect('/grupos')

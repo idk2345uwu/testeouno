@@ -25,6 +25,8 @@
                 <td>{{ grupo.fecha }}</td>
                 <td>{{ grupo.cancion }}</td>
                 <td>{{ grupo.gruponuevo }}</td>
+                <td><a href="/actualizarGrupo/{{ grupo.id }}" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a></td>
+                <td><a href="/eliminarGrupo/{{ grupo.id }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -41,5 +43,5 @@
 
 
     <a href="../" class="btn btn-danger">VOLVER</a>
-    <a href="../agregarGrupo.html" class="btn btn-info float-end">Agregar Nuevo Grupo</a>
+    <a href="{% url 'agregarGrupo' %}" class="btn btn-info float-end">Agregar Nuevo Grupo</a>
 </body>
