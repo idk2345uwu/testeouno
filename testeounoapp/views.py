@@ -8,6 +8,10 @@ from testeounoapp.models import Proyecto
 from testeounoapp.forms import FormCancion
 from testeounoapp.models import Cancion
 
+
+from testeounoapp.forms import FormGrupo
+from testeounoapp.forms import Grupo
+
 from django.shortcuts import get_object_or_404, redirect
 
 # Create your views here.
@@ -77,3 +81,26 @@ def eliminarCancion(request, id):
     cancion = get_object_or_404(Cancion, id=id)
     cancion.delete()
     return redirect('/canciones')
+
+
+
+
+
+
+
+
+
+
+def listadoGrupo(request):
+    grupos = Grupo.objects.all()
+    data = {'grupos' : grupos}
+    return render(request, 'testeounoapp/grupos.html', data)
+def agregarGrupo(request):
+    form = FormGrupo()
+    if request.method == 'POST':
+        form = FormGrupo(request.POST)
+        if form.is_valid():
+            form.save()
+        return inicio(request)
+    data = {'form' : form}
+    return render(request, 'testeounoapp/agregarGrupo.html', data)

@@ -1,0 +1,16 @@
+<head></head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="container-fluid lt 6">
+    <div class="alert alert-info display-1 text-center">Agregar Grupo</div>
+
+    <form method = 'POST'>
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="AGREGAR Grupo" class="btn btn-info">
+    </form>
+
+
+    <a href="../grupos" class="btn btn-info mt-5">Volver a la Lista</a>
+</body>

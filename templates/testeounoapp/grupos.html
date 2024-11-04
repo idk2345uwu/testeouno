@@ -1,0 +1,45 @@
+<head></head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container-fluid sm-12">
+    <div class="alert alert-info display-1 text-center">Registro de Grupos</div>
+
+    {% if grupos %}
+
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Nombre</th>
+                <th>Integrantes</th>
+                <th>Fecha de Registro</th>
+                <th>Cancion</th>
+                <th>Grupo Nuevo</th>
+                <th>-</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grupo in grupos %}
+            <tr>
+                <td>{{ grupo.nombre }}</td>
+                <td>{{ grupo.integrantes }}</td>
+                <td>{{ grupo.fecha }}</td>
+                <td>{{ grupo.cancion }}</td>
+                <td>{{ grupo.gruponuevo }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+
+    <div class="alert alert-primary" role="alert">
+        <strong>No Hay/No se Hayan Grupos en el sistema</strong>
+    </div>
+
+
+    {% endif %}
+
+
+    <a href="../" class="btn btn-danger">VOLVER</a>
+    <a href="../agregarGrupo.html" class="btn btn-info float-end">Agregar Nuevo Grupo</a>
+</body>
