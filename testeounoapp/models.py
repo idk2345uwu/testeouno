@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=100)
     rut = models.IntegerField()
@@ -9,10 +8,8 @@ class Proyecto(models.Model):
     cancion = models.CharField(max_length=100)
     localidad = models.CharField(max_length=50)
 
-    
-
     class Meta:
-        db_table = 'testeounoapp_proyecto' 
+        db_table = 'testeounoapp_proyecto'
 
 
 class Cancion(models.Model):
@@ -31,9 +28,9 @@ class Cancion(models.Model):
 
 class Grupo(models.Model):
     nombre = models.CharField(max_length=100)
-    integrantes = models.CharField(max_length=200)
+    integrantes = models.ManyToManyField(Proyecto, related_name='grupos')
     fecha = models.DateField(auto_now_add=True)
-    cancion = models.CharField(max_length=200)
+    cancion = models.ForeignKey(Cancion, on_delete=models.SET_NULL, null=True, blank=True)
     gruponuevo = models.BooleanField()
 
     def __str__(self):

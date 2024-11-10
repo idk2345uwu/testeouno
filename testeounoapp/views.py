@@ -92,17 +92,18 @@ def eliminarCancion(request, id):
 
 
 def listadoGrupo(request):
-    grupos = Grupo.objects.all()
-    data = {'grupos' : grupos}
-    return render(request, 'testeounoapp/grupos.html', data)
+    grupos = Grupo.objects.prefetch_related('integrantes').all()
+    return render(request, 'testeounoapp/grupos.html', {'grupos': grupos})
 def agregarGrupo(request):
     form = FormGrupo()
     if request.method == 'POST':
         form = FormGrupo(request.POST)
         if form.is_valid():
-            form.save()
-        return inicio(request)
-    data = {'form' : form}
+            grupo = form.save(commit=False)
+            grupo.save()
+            form.save_m2m()
+            return inicio(request)
+    data = {'form': form}
     return render(request, 'testeounoapp/agregarGrupo.html', data)
 
 

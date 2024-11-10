@@ -5,10 +5,10 @@
 <body class="container-fluid lt 6">
     <div class="alert alert-info display-1 text-center">Agregar Grupo</div>
 
-    <form method = 'POST'>
-        {{ form.as_p }}
+    <form method="post">
         {% csrf_token %}
-        <input type="submit" value="AGREGAR Grupo" class="btn btn-info">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar Grupo</button>
     </form>
 
 

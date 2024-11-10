@@ -17,6 +17,20 @@ class FormCancion(forms.ModelForm):
 
 
 class FormGrupo(forms.ModelForm):
+    Proyecto = forms.ModelMultipleChoiceField(
+        queryset=Proyecto.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        label="Integrantes",
+        to_field_name="nombre"
+    )
+    
+
     class Meta:
         model = Grupo
         fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['Proyecto'].label_from_instance = lambda obj: obj.nombre
+
+    
