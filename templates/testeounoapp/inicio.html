@@ -1,12 +1,30 @@
-<head></head>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("{% static 'images/Aespa_Background.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            
+        }
+    </style>
 </head>
-
 <body class="container-fluid xl-3">
-<div class="alert alert-info display-1 text-center">Administrador de Grupos Cover</div>
+    <div class="alert display-1 text-center custom-alert-no-bg">Administrador de Grupos Cover</div>
+    <style>
+        .custom-alert-no-bg {
+            background-color: transparent;
+            border: none;
+            color: #5b0639;
+            }
+    </style>
 
-<a href="/proyectos/" class="btn btn-info">Integrantes</a>
-<a href="/canciones/" class="btn btn-info">Canciones</a>
-<a href="/grupos/" class="btn btn-info">Grupos</a>
-<a href="/admin/" class="btn btn-info">Admin</a>
+    <a href="/proyectos/" class="btn btn-info">Integrantes</a>
+    <a href="/canciones/" class="btn btn-info">Canciones</a>
+    <a href="/grupos/" class="btn btn-info">Grupos</a>
+    <a href="/admin/" class="btn btn-info">Admin</a>
 </body>
+</html>
