@@ -4,8 +4,8 @@ class Proyecto(models.Model):
     nombre = models.CharField(max_length=100)
     rut = models.IntegerField()
     edad = models.IntegerField()
-    grupo = models.CharField(max_length=50)
-    cancion = models.CharField(max_length=100)
+    #grupo = models.CharField(max_length=50)#
+    #cancion = models.CharField(max_length=100)#
     localidad = models.CharField(max_length=50)
 
     class Meta:
