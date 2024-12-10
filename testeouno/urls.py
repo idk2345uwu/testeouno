@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from testeounoapp.views import(inicio,agregarProyecto,listadoProyectos,eliminarProyecto,actualizarProyecto,eliminarProyecto,listadoCancion,agregarCancion,eliminarCancion,actualizarCancion,listadoGrupo,agregarGrupo,actualizarGrupo,eliminarGrupo)
+from django.urls import path, include
+from testeounoapp.views import(inicio,agregarProyecto,listadoProyectos,eliminarProyecto,actualizarProyecto,eliminarProyecto,listadoCancion,agregarCancion,eliminarCancion,actualizarCancion,listadoGrupo,agregarGrupo,actualizarGrupo,eliminarGrupo,proyecto_list,proyecto_detail,cancion_list,cancion_detail,grupo_list,grupo_detail)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +34,10 @@ urlpatterns = [
     path('agregarGrupo/', agregarGrupo, name='agregarGrupo'),
     path('actualizarGrupo/<int:id>', actualizarGrupo),
     path('eliminarGrupo/<int:id>/', eliminarGrupo),
+    path('proyecto_list/', proyecto_list),
+    path('proyecto_list/<int:pk>', proyecto_detail),
+    path('cancion_list/', cancion_list),
+    path('cancion_list/<int:pk>', cancion_detail),
+    path('grupo_list/', grupo_list),
+    path('grupo_list/<int:pk>', grupo_detail),
 ]

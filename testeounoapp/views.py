@@ -14,6 +14,15 @@ from testeounoapp.forms import Grupo
 
 from django.shortcuts import get_object_or_404, redirect
 
+
+
+from testeounoapp.serializers import serializersProyecto
+from testeounoapp.serializers import serializersCancion
+from testeounoapp.serializers import serializersGrupo
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import api_view
+
 # Create your views here.
 def inicio(request):
     return render(request, 'testeounoapp/inicio.html')
@@ -121,3 +130,127 @@ def eliminarGrupo(request, id):
     grupo = get_object_or_404(Grupo, id=id)
     grupo.delete()
     return redirect('/grupos')
+
+
+
+
+
+
+@api_view(['GET', 'POST'])
+def proyecto_list(request):
+    if request.method=='GET':
+        proyectos = Proyecto.objects.all()
+        serializer = serializersProyecto(proyectos, many=True)
+        return Response(serializer.data)
+
+    if request.method == 'POST':
+        serializer = serializersProyecto(data = request.data)
+        if serializer.is_valid() :
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def proyecto_detail(request, pk):
+    try:
+        proyecto = Proyecto.objects.get(pk=pk)
+    except Proyecto.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = serializersProyecto(proyecto)
+        return Response(serializer.data)
+    
+
+    if request.method == 'PUT':
+        serializer = serializersProyecto(proyecto, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    if request.method == 'DELETE':
+        proyecto.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+
+
+@api_view(['GET', 'POST'])
+def cancion_list(request):
+    if request.method == 'GET':
+        canciones = Cancion.objects.all()
+        serializer = serializersCancion(canciones, many=True)
+        return Response(serializer.data)
+
+    if request.method == 'POST':
+        serializer = serializersCancion(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def cancion_detail(request, pk):
+    try:
+        cancion = Cancion.objects.get(pk=pk)
+    except Cancion.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = serializersCancion(cancion)
+        return Response(serializer.data)
+
+    if request.method == 'PUT':
+        serializer = serializersCancion(cancion, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    if request.method == 'DELETE':
+        cancion.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+def grupo_list(request):
+    if request.method == 'GET':
+        grupos = Grupo.objects.all()
+        serializer = serializersGrupo(grupos, many=True)
+        return Response(serializer.data)
+
+    if request.method == 'POST':
+        serializer = serializersGrupo(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def grupo_detail(request, pk):
+    try:
+        grupo = Grupo.objects.get(pk=pk)
+    except Grupo.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = serializersGrupo(grupo)
+        return Response(serializer.data)
+
+    if request.method == 'PUT':
+        serializer = serializersGrupo(grupo, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    if request.method == 'DELETE':
+        grupo.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
