@@ -16,28 +16,36 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
-from testeounoapp.views import(inicio,agregarProyecto,listadoProyectos,eliminarProyecto,actualizarProyecto,eliminarProyecto,listadoCancion,agregarCancion,eliminarCancion,actualizarCancion,listadoGrupo,agregarGrupo,actualizarGrupo,eliminarGrupo,proyecto_list,proyecto_detail,cancion_list,cancion_detail,grupo_list,grupo_detail)
+from rest_framework.routers import DefaultRouter
+from testeounoapp import views
+router = DefaultRouter()
+router.register('proyectos_list', views.ProyectoViewSets)
+router.register('canciones_list', views.CancionesViewSets)
+router.register('grupos_list', views.GruposViewSets)
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',inicio),
-    path('proyectos/', listadoProyectos),
-    path('agregarProyecto/', agregarProyecto),
-    path('eliminarProyecto/<int:id>', eliminarProyecto),
-    path('actualizarProyecto/<int:id>', actualizarProyecto),
-    path('eliminarProyecto/<int:id>/', eliminarProyecto),
-    path('canciones/',listadoCancion),
-    path('agregarCancion/',agregarCancion),
-    path('eliminarCancion/<int:id>', eliminarCancion),
-    path('actualizarCancion/<int:id>', actualizarCancion),
-    path('grupos/',listadoGrupo),
-    path('agregarGrupo/', agregarGrupo, name='agregarGrupo'),
-    path('actualizarGrupo/<int:id>', actualizarGrupo),
-    path('eliminarGrupo/<int:id>/', eliminarGrupo),
-    path('proyecto_list/', proyecto_list),
-    path('proyecto_list/<int:pk>', proyecto_detail),
-    path('cancion_list/', cancion_list),
-    path('cancion_list/<int:pk>', cancion_detail),
-    path('grupo_list/', grupo_list),
-    path('grupo_list/<int:pk>', grupo_detail),
+    path('',views.inicio),
+    path('proyectos/', views.listadoProyectos),
+    path('agregarProyecto/', views.agregarProyecto),
+    path('eliminarProyecto/<int:id>', views.eliminarProyecto),
+    path('actualizarProyecto/<int:id>', views.actualizarProyecto),
+    path('eliminarProyecto/<int:id>/', views.eliminarProyecto),
+    path('canciones/', views.listadoCancion),
+    path('agregarCancion/', views.agregarCancion),
+    path('eliminarCancion/<int:id>', views.eliminarCancion),
+    path('actualizarCancion/<int:id>', views.actualizarCancion),
+    path('grupos/', views.listadoGrupo),
+    path('agregarGrupo/', views.agregarGrupo, name='agregarGrupo'),
+    path('actualizarGrupo/<int:id>', views.actualizarGrupo),
+    path('eliminarGrupo/<int:id>/', views.eliminarGrupo),
+    path('api/', include(router.urls)),
+    path('proyecto_list/', views.proyecto_list),
+    path('proyecto_list/<int:pk>', views.proyecto_detail),
+    path('cancion_list/', views.cancion_list),
+    path('cancion_list/<int:pk>', views.cancion_detail),
+    path('grupo_list/', views.grupo_list),
+    path('grupo_list/<int:pk>', views.grupo_detail),
 ]

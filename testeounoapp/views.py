@@ -16,12 +16,15 @@ from django.shortcuts import get_object_or_404, redirect
 
 
 
+
+from rest_framework import viewsets
 from testeounoapp.serializers import serializersProyecto
 from testeounoapp.serializers import serializersCancion
 from testeounoapp.serializers import serializersGrupo
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
+
 
 # Create your views here.
 def inicio(request):
@@ -254,3 +257,16 @@ def grupo_detail(request, pk):
     if request.method == 'DELETE':
         grupo.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ProyectoViewSets(viewsets.ModelViewSet):
+    queryset = Proyecto.objects.all()
+    serializer_class = serializersProyecto
+
+class CancionesViewSets(viewsets.ModelViewSet):
+    queryset = Cancion.objects.all()
+    serializer_class = serializersCancion
+
+class GruposViewSets(viewsets.ModelViewSet):
+    queryset = Grupo.objects.all()
+    serializer_class = serializersGrupo
